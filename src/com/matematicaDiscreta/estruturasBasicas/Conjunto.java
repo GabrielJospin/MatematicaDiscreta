@@ -1,27 +1,28 @@
 package com.matematicaDiscreta.estruturasBasicas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Conjunto {
     int tamanho;
-    List<Object> lista;
+    public List<Object> lista;
 
-    Conjunto(){
+    public Conjunto(){
         this.tamanho = 0;
-        this.lista = null;
+        this.lista = new ArrayList();
     }
 
-    Conjunto(List<Object> lista){
+    public Conjunto(List<Object> lista){
         this.tamanho = lista.size();
         this.lista = lista;
     }
 
-    void inserir(Object elemento){
+    public void inserir(Object elemento){
         lista.add(elemento);
         tamanho++;
     }
 
-    void removeAt(Object elemento) throws Exception {
+    public void removeAt(Object elemento) throws Exception {
         if(this.lista.contains(elemento)){
             this.lista.remove(elemento);
         }else {
@@ -30,40 +31,48 @@ public class Conjunto {
         }
     }
 
-    static boolean estaIncluso(Conjunto ConjuntoPremissa, Conjunto conjuntoResultado){
-        if(ConjuntoPremissa.lista.isEmpty()) return true;
-        if(conjuntoResultado.lista.isEmpty()) return false;
+    public boolean estaInclusoEm(Conjunto conjuntoUniverso){
+        if(this.lista.isEmpty()) return true;
+        if(conjuntoUniverso.lista.isEmpty()) return false;
 
-        return conjuntoResultado.lista.containsAll(ConjuntoPremissa.lista);
+        return conjuntoUniverso.lista.containsAll(this.lista);
     }
 
-    static boolean isEquals(Conjunto conjuntoPremissa, Conjunto conjuntoResultado) {
-        return estaIncluso(conjuntoPremissa, conjuntoResultado) &&
-                estaIncluso(conjuntoPremissa, conjuntoResultado);
+    public boolean isEquals(Conjunto conjuntoResultado) {
+        return this.estaInclusoEm(conjuntoResultado) &&
+                conjuntoResultado.estaInclusoEm(this);
     }
 
-    static Conjunto uniao(Conjunto conjunto1, Conjunto conjunto2){
+    public static Conjunto uniao(Conjunto conjunto1, Conjunto conjunto2){
 
-        conjunto1.lista.addAll(conjunto2.lista);
+        Conjunto resposta = new Conjunto();
 
-        return conjunto1;
+        for(Object i: conjunto1.lista){
+            if(!resposta.lista.contains(i))resposta.inserir(i);
+        }
+
+        for(Object i: conjunto2.lista){
+            if(!resposta.lista.contains(i))resposta.inserir(i);
+        }
+
+        return resposta;
     }
 
-    static Conjunto interseccao(Conjunto conjunto1, Conjunto conjunto2){
+    public static Conjunto interseccao(Conjunto conjunto1, Conjunto conjunto2){
 
         Conjunto resposta = new Conjunto();
 
         if(conjunto1.lista.isEmpty() || conjunto2.lista.isEmpty()) return resposta;
 
         for(Object elemento: conjunto1.lista){
-            if(conjunto2.lista.contains(elemento))
+            if(elemento != null && conjunto2.lista.contains(elemento) && !resposta.lista.contains(elemento))
                 resposta.inserir(elemento);
         }
 
         return resposta;
     }
 
-    static Conjunto diferenca(Conjunto conjunto1, Conjunto conjunto2){
+    public static Conjunto diferenca(Conjunto conjunto1, Conjunto conjunto2){
 
         Conjunto resposta = new Conjunto();
 
