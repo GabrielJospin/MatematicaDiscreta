@@ -2,6 +2,7 @@ package com.matematicaDiscreta;
 
 import com.matematicaDiscreta.estruturasBasicas.Conjunto;
 import com.matematicaDiscreta.estruturasBasicas.Modulo;
+import com.matematicaDiscreta.estruturasBasicas.Primos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,15 +143,30 @@ public class Main {
 
     }
 
+    public static void testePrimos(){
+        Primos primos = new Primos();
+
+        List<Integer> listaDePrimos = primos.listaDePrimos(100);
+        System.out.println(listaDePrimos);
+
+        System.out.printf("gdc(%d,%d) = %s e lcd(%d,%d) = %s",
+                        156,789,primos.greatCommomDivisor(156,789),
+                        156,789,primos.lessCommonMultiply(156,789));
+
+
+    }
+
     public static void main(String[] args) {
 
-        //testeConjuntos();
+        testePrimos();
+//        testeConjuntos();
+//        try {
+//            testeMasayukiDoModulo();
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
-        try {
-            testeMasayukiDoModulo();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
 
     }
 }

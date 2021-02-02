@@ -12,11 +12,10 @@ public class Primos {
         List<Integer> answer = new ArrayList();
 
         for(Integer i = 2; i<= limit; i++){
-            if(ePrimo(i)) answer.add(i);
-        }
-
-        for (Integer i : answer){
-            if(!primos.contains(i)) primos.add(i);
+            if(ePrimo(i)) {
+                answer.add(i);
+                if(!primos.contains(i)) primos.add(i);
+            }
         }
 
         return answer;
@@ -24,7 +23,8 @@ public class Primos {
 
     boolean ePrimo(Integer numero){
 
-        int limit = (int) ((Math.sqrt(numero)));
+        int sqrt = (int) ((Math.sqrt(numero)));
+        int limit = Math.min(sqrt, primos.size());
 
         for (int i = 0; i< limit; i++){
            if(numero % primos.get(i) == 0) return false;
@@ -33,7 +33,7 @@ public class Primos {
         return true;
     }
 
-    Integer greatComumDivisor(Integer numberOne, Integer numberTwo){
+    public Integer greatCommomDivisor(Integer numberOne, Integer numberTwo){
 
         if(numberTwo.equals(0)) return numberOne;
         if(numberOne.equals(0)) return numberTwo;
@@ -43,13 +43,13 @@ public class Primos {
         Integer biggestNumber = (numberTwo > numberOne) ? numberTwo : numberOne;
         Integer smallerNumber = (numberTwo < numberOne) ? numberTwo : numberOne;
 
-        return greatComumDivisor(smallerNumber, biggestNumber%smallerNumber);
+        return greatCommomDivisor(smallerNumber, biggestNumber%smallerNumber);
 
     }
 
-    Integer lessCommonMultiply(Integer numberOne, Integer numberTwo){
+    public Integer lessCommonMultiply(Integer numberOne, Integer numberTwo){
 
-        Integer greatCommonDivisor = greatComumDivisor(numberOne,numberTwo);
+        Integer greatCommonDivisor = greatCommomDivisor(numberOne,numberTwo);
         return (numberOne*numberTwo)/greatCommonDivisor;
 
     }
