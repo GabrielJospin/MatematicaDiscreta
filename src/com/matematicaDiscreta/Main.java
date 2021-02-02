@@ -1,6 +1,8 @@
 package com.matematicaDiscreta;
 
 import com.matematicaDiscreta.estruturasBasicas.Conjunto;
+import com.matematicaDiscreta.estruturasBasicas.Modulo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,9 +71,86 @@ public class Main {
 
     }
 
+    public static void testeModulo() throws Exception {
+        Modulo mod1 = new Modulo(5,2);
+        Modulo mod2 = new Modulo(107,5);
+        Modulo mod3 = new Modulo(456,53);
+        Modulo mod4 = new Modulo(112,111);
+
+        mod1.PrintAlgoritmo();
+        mod2.PrintAlgoritmo();
+        mod3.PrintAlgoritmo();
+        mod4.PrintAlgoritmo();
+
+        mod1.PrintMod();
+        mod2.PrintMod();
+        mod3.PrintMod();
+        mod4.PrintMod();
+
+        if(mod4.Divisivel())System.out.printf("4ª expressão é divisivel\n");
+        if(mod1.equivalente(mod2))System.out.printf("1ª expressão é equivalnete a segunda\n");
+
+        System.out.printf("%s é inversa de",mod1.inversa().toString());
+        mod1.PrintMod();
+
+        System.out.printf("%s é inversa de",mod2.inversa().toString());
+        mod2.PrintMod();
+
+        System.out.printf("%s é inversa de",mod3.inversa().toString());
+        mod3.PrintMod();
+
+        System.out.printf("%s é inversa de",mod4.inversa().toString());
+        mod4.PrintMod();
+
+        List<Modulo> lista = new ArrayList();
+        lista.add(mod1);
+        lista.add(mod2);
+        lista.add(mod3);
+        lista.add(mod4);
+
+        Modulo.teoremaChineDoResto(lista);
+
+    }
+
+    public static void testeMasayukiDoModulo() throws Exception{
+
+        System.out.printf("\nTESTES DO MASAYUKI\n Exercicio 1: \n");
+
+        List<Modulo> exercise1 = new ArrayList();
+        exercise1.add(new Modulo(1,5));
+        exercise1.add(new Modulo(2,8));
+        exercise1.add(new Modulo(3,7));
+        Modulo.teoremaChineDoResto(exercise1);
+
+        System.out.printf("\nExercicio 2:\n");
+
+        List<Modulo> exercise2 = new ArrayList();
+        exercise2.add(new Modulo(1,3));
+        exercise2.add(new Modulo(2,4));
+        exercise2.add(new Modulo(3,5));
+        Modulo.teoremaChineDoResto(exercise2);
+
+        System.out.printf("\nExercicio 3:\n");
+
+        List<Modulo> exercise3 = new ArrayList();
+        exercise3.add(new Modulo(4,7));
+        exercise3.add(new Modulo(5,8));
+        exercise3.add(new Modulo(6,9));
+        Modulo.teoremaChineDoResto(exercise3);
+
+        System.out.printf("\n");
+
+    }
+
     public static void main(String[] args) {
 
-        testeConjuntos();
+        //testeConjuntos();
+
+        try {
+            testeMasayukiDoModulo();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 }

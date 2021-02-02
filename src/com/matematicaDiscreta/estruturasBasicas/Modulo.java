@@ -43,8 +43,8 @@ public class Modulo {
                 this.divisor);
     }
 
-    public boolean equivalente(Modulo comparativo){
-        return this.resto == comparativo.resto;
+    public boolean equivalente(Modulo comparativo) {
+        return this.resto.equals(comparativo.resto) && this.divisor.equals(comparativo.divisor);
     }
 
     public Integer inversa() throws Exception {
