@@ -1,6 +1,7 @@
 package com.matematicaDiscreta;
 
 import com.matematicaDiscreta.estruturasBasicas.Conjunto;
+import com.matematicaDiscreta.estruturasBasicas.Contagem;
 import com.matematicaDiscreta.estruturasBasicas.Modulo;
 import com.matematicaDiscreta.estruturasBasicas.Primos;
 
@@ -156,9 +157,31 @@ public class Main {
 
     }
 
+    public static void testeContagem(){
+
+        System.out.printf("10^3 = %s\n", Contagem.potencia(10,3).toString());
+        System.out.printf("10! = %s\n", Contagem.fatorial(10).toString());
+        System.out.printf("P(10,3) = %s\n", Contagem.permutacao(10,3).toString());
+        System.out.printf("P(Pi,3) = %s\n", Contagem.permutacao(Math.PI,3).toString());
+        System.out.printf("C(10,3) = %s\n", Contagem.combinatoria(10,3).toString());
+        System.out.printf("C(Pi,3) = %s \n", Contagem.combinatoria(Math.PI,3).toString());
+
+        List<Integer> limiters = new ArrayList();
+        limiters.add(3);
+        limiters.add(2);
+        limiters.add(2);
+        limiters.add(1);
+        limiters.add(1);
+        limiters.add(1);
+
+        System.out.printf("Anagramas de 'Matematica' = %s \n", Contagem.Anagrama(limiters));
+    }
+
     public static void main(String[] args) {
 
-        testePrimos();
+
+        testeContagem();
+//        testePrimos();
 //        testeConjuntos();
 //        try {
 //            testeMasayukiDoModulo();

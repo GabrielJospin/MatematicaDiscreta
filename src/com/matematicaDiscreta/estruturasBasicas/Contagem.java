@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Contagem {
 
-    static Integer potencia(Integer base, Integer expoente){
+    public static Integer potencia(Integer base, Integer expoente){
 
         Integer result = 1;
 
@@ -14,7 +14,7 @@ public class Contagem {
 
     }
 
-    static Integer fatorial(Integer number){
+    public static Integer fatorial(Integer number){
         Integer result = 1;
 
         for(Integer i = number; i>0;i--) result = result*i;
@@ -22,23 +22,25 @@ public class Contagem {
         return result;
     }
 
-    static Integer permutacao(Integer number, Integer limiter){
+    public static Integer permutacao(Integer number, Integer limiter){
         Integer result = 1;
 
-        for(Integer i = number; i>(limiter-number);i--) result = result*i;
+        for(Integer i = number; i>(number-limiter);i--)
+            result = result*i;
 
         return result;
     }
 
-    static Double permutacao(Double number, Integer limiter){
+    public static Double permutacao(Double number, Integer limiter){
         Double result = 1.0;
 
-        for(Double i = number; i>(limiter-number);i--) result = result*i;
+        for(Double i = number; i>(number-limiter);i--)
+            result = result*i;
 
         return result;
     }
 
-    static Integer combinatoria(Integer number, Integer limit){
+    public static Integer combinatoria(Integer number, Integer limit){
 
         Integer limitReal = Math.min(limit,number-limit);
 
@@ -46,11 +48,19 @@ public class Contagem {
 
     }
 
-    static Integer Anagrama(Integer number, List<Integer> limiters){
+    public static Double combinatoria(Double number, Integer limit){
+        return permutacao(number,limit) / fatorial(limit);
+    }
+
+    public static Integer Anagrama(List<Integer> limiters){
 
         int limiterResult = 1;
+        int number = 0;
 
-        for(Integer i: limiters) limiterResult = limiterResult * fatorial(i);
+        for(Integer i: limiters){
+            limiterResult = limiterResult * fatorial(i);
+            number += i;
+        }
 
         return fatorial(number) / limiterResult;
     }
