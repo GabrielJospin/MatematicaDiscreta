@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Primos {
 
-    List<Integer> primos = new ArrayList();
+    static List<Integer> primos = new ArrayList();
 
     public List<Integer> listaDePrimos(Integer limit){
 
